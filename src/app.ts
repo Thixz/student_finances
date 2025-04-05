@@ -8,8 +8,14 @@ import { jsonSchemaTransform, serializerCompiler, validatorCompiler } from "fast
 import fastifyCors from "@fastify/cors";
 import fastifyJwt from "@fastify/jwt";
 import fastifyCookie from "@fastify/cookie";
+import { studentsRoutes } from "./http/controllers/students/routes";
 
 export const app = fastify();
+
+app.setValidatorCompiler(validatorCompiler)
+app.setSerializerCompiler(serializerCompiler)
+
+app.register(fastifyCors,{origin:"*"})
 
 app.register(fastifyJwt, {
   secret: env.JWT_SECRET,
@@ -18,22 +24,15 @@ app.register(fastifyJwt, {
    signed:false
   },
   sign: {
-    expiresIn: "10m",
+    expiresIn: "5m",
   }
 });
-
-app.register(fastifyCookie)
-
-app.setValidatorCompiler(validatorCompiler)
-app.setSerializerCompiler(serializerCompiler)
-
-app.register(fastifyCors,{origin:"*"})
 
 app.register(fastifySwagger, {
   openapi: {
     info: {
-      title: "Bank API",
-      description: "Documentação da API Bank",
+      title: "Students Financial Simulation API",
+      description: "Documentation of Students Financial Simulation API",
       version: "1.0.0",
     },
   },
@@ -41,8 +40,12 @@ app.register(fastifySwagger, {
 });
 
 app.register(fastifySwaggerUi, {
-  routePrefix: "/swagger",
+  routePrefix: "/docs",
 });
+
+app.register(fastifyCookie)
+
+app.register(studentsRoutes)
 
 
 
@@ -51,22 +54,31 @@ app.register(fastifySwaggerUi, {
 
 
 app.setErrorHandler((error, _, reply) => {
-  if (env.NODE_ENV !== "production") {
-    console.error(error);
-  } else {
-    // TODO: Here we shouyld log to and external tool like DataDog/Sentry....
-  }
-
+  console.log(error)
   if (error instanceof ZodError) {
-    return reply
-      .status(400)
-      .send({ message: "Validation error.", issues: error.format() });
+    const messages = error.errors.map((err) => err.message);
+
+    return reply.status(400).send({
+      message: "Validation error.",
+      issues: messages,
+    });
   }
 
   if (error instanceof DefaultError) {
     return reply
       .status(error.statusCode)
-      .send({ message: "Handled error.", issues: error.issues });
+      .send({ message: "Handled error.", issues: [error.issues] });
+  }
+
+  if (error.code === "FST_ERR_VALIDATION") {
+    const messages = error.validation!.map((issue: any) => {
+      return `${issue.instancePath}: ${issue.message}`;
+    });
+  
+    return reply.status(400).send({
+      message: "Validation error.",
+      issues: messages,
+    });
   }
 
   return reply

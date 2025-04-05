@@ -2,35 +2,36 @@ import { makeAuthenticateStudentUseCase } from "@src/modules/students/use-cases/
 import { FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
 
+export const authenticateStudentBodySchema = z.object({
+  email: z.string().email(),
+  password: z.string(),
+});
+
 export async function authenticate(
   request: FastifyRequest,
   reply: FastifyReply
 ) {
-  const authenticateBodySchema = z.object({
-    email: z.string().email(),
-    password: z.string().min(6),
-  });
-
-  const { email, password } = authenticateBodySchema.parse(request.body);
+  const { email, password } = authenticateStudentBodySchema.parse(request.body);
 
   const authenticateStudentUseCase = makeAuthenticateStudentUseCase();
 
   const { student } = await authenticateStudentUseCase.execute({ email, password });
 
   const token = await reply.jwtSign(
+    {},
     {
       sign: {
-        sub: student.id,
-        expiresIn:"5m"
+        sub: student.id
       },
     }
   );
 
   const refreshToken = await reply.jwtSign(
+    {},
     {
       sign: {
         sub: student.id,
-        expiresIn: "1d",
+        expiresIn: "7d",
       },
     }
   );

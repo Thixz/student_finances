@@ -19,7 +19,7 @@ export class GetStudentProfileUseCase {
     const student = await this.studentsRepository.findById(student_id);
 
     if (!student) {
-      throw new DefaultError("Resource not found.", 400);
+      throw new DefaultError("Student not found.", 400);
     }
 
     return { student };
