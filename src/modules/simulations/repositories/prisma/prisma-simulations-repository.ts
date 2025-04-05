@@ -3,11 +3,21 @@ import { ISimulationsRepository } from "../Isimulations-repository";
 import { prisma } from "@src/lib/prisma";
 
 export class PrismaSimulationsRepository implements ISimulationsRepository {
-  async create(data: Prisma.SimulationCreateInput): Promise<Simulation> {
+  async getById(id: string): Promise<Simulation | null> {
+    return await prisma.simulation.findUnique({where:{id}})
+  }
+
+  async delete(id: string): Promise<void> {
+    await prisma.simulation.delete({ where: { id } });
+  }
+
+  async create(
+    data: Prisma.SimulationUncheckedCreateInput
+  ): Promise<Simulation> {
     return await prisma.simulation.create({ data });
   }
 
-  async getAll(): Promise<Simulation[]> {
-    return await prisma.simulation.findMany();
+  async getAll(id_estudante: string): Promise<Simulation[]> {
+    return await prisma.simulation.findMany({ where: { id_estudante } });
   }
 }

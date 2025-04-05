@@ -9,6 +9,7 @@ import fastifyCors from "@fastify/cors";
 import fastifyJwt from "@fastify/jwt";
 import fastifyCookie from "@fastify/cookie";
 import { studentsRoutes } from "./http/controllers/students/routes";
+import { simulationsRoutes } from "./http/controllers/simulations/routes";
 
 export const app = fastify();
 
@@ -35,6 +36,15 @@ app.register(fastifySwagger, {
       description: "Documentation of Students Financial Simulation API",
       version: "1.0.0",
     },
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: "http",
+          scheme: "bearer",
+          bearerFormat: "JWT",
+        },
+      },
+    },
   },
   transform: jsonSchemaTransform,
 });
@@ -46,6 +56,7 @@ app.register(fastifySwaggerUi, {
 app.register(fastifyCookie)
 
 app.register(studentsRoutes)
+app.register(simulationsRoutes)
 
 
 
@@ -54,7 +65,6 @@ app.register(studentsRoutes)
 
 
 app.setErrorHandler((error, _, reply) => {
-  console.log(error)
   if (error instanceof ZodError) {
     const messages = error.errors.map((err) => err.message);
 

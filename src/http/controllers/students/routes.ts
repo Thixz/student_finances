@@ -6,6 +6,7 @@ import { authenticate, authenticateStudentBodySchema } from "./authenticate";
 import { verifyJWT } from "@src/http/middlewares/verify-authentication";
 import { getStudentProfile } from "./getProfile";
 import { refreshToken } from "./refreshToken";
+import { errorSchema } from "@src/helpers/ErrorSchema";
 
 const studentSchema = z.object({
   student: z.object({
@@ -14,11 +15,6 @@ const studentSchema = z.object({
     sobrenome: z.string(),
     email: z.string(),
   }),
-});
-
-const errorSchema = z.object({
-  message: z.string(),
-  issues: z.array(z.string()),
 });
 
 export function studentsRoutes(app: FastifyInstance) {
@@ -80,6 +76,11 @@ export function studentsRoutes(app: FastifyInstance) {
       schema: {
         description: "Retrieves an authenticated student data",
         tags: ["students"],
+        security: [
+          {
+            bearerAuth: [],
+          },
+        ],
         response: {
           200: studentSchema,
           401: errorSchema.describe("Unauthorized"),
@@ -96,6 +97,11 @@ export function studentsRoutes(app: FastifyInstance) {
       schema: {
         description: "Updates a student",
         tags: ["students"],
+        security: [
+          {
+            bearerAuth: [],
+          },
+        ],
         body: updateStudentBodySchema,
         response: {
           204: z.null().describe("Student Updated"),

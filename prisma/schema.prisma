@@ -28,10 +28,10 @@ model Student {
 model Simulation {
   id                   String  @id @default(uuid())
   id_estudante         String
-  valor_total          Decimal
+  valor_total          Decimal @db.Decimal(10, 2)
   quantidade_parcelas  Int
-  juros_ao_mes         Decimal
-  valor_parcela_mensal Decimal @default(0)
+  juros_ao_mes         Decimal @db.Decimal(5, 4)
+  valor_parcela_mensal Decimal @db.Decimal(10, 2)
 
   estudante Student @relation(fields: [id_estudante], references: [id])
 
