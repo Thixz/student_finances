@@ -6,6 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "tsx watch --inspect src/server.ts",
+    "dockerdev": "ts-node-dev --inspect --transpile-only --poll --ignore-watch node_modules --respawn -r tsconfig-paths/register src/server.ts",
+    "prepare-database": "npx prisma generate && npx prisma migrate deploy",
     "build": "tsup src --out-dir build",
     "start": "node build/server.js"
   },
@@ -15,6 +17,7 @@
   "devDependencies": {
     "@types/node": "^22.13.16",
     "prisma": "6.5.0",
+    "ts-node-dev": "2.0.0",
     "tsup": "^8.4.0",
     "tsx": "^4.19.3",
     "typescript": "^5.8.2"
@@ -30,6 +33,7 @@
     "dotenv": "16.4.7",
     "fastify": "5.2.2",
     "fastify-type-provider-zod": "4.0.2",
+    "tsconfig-paths": "4.2.0",
     "zod": "3.24.2"
   }
 }
