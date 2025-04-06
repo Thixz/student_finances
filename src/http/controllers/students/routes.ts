@@ -7,6 +7,7 @@ import { verifyJWT } from "@src/http/middlewares/verify-authentication";
 import { getStudentProfile } from "./getProfile";
 import { refreshToken } from "./refreshToken";
 import { errorSchema } from "@src/helpers/ErrorSchema";
+import { updatePasswordBodySchema, updateStudentPassword } from "./update-password";
 
 const studentSchema = z.object({
   student: z.object({
@@ -110,5 +111,28 @@ export function studentsRoutes(app: FastifyInstance) {
       },
     },
     updateStudent
+  );
+
+  app.put(
+    "/api/me/password",
+    {
+      onRequest: [verifyJWT],
+      schema: {
+        description: "Updates a student password",
+        tags: ["students"],
+        security: [
+          {
+            bearerAuth: [],
+          },
+        ],
+        body: updatePasswordBodySchema,
+        response: {
+          204: z.null().describe("Password Updated"),
+          401: errorSchema.describe("Unauthorized"),
+          400: errorSchema.describe("Student not found or Invalid Credentials"),
+        },
+      },
+    },
+    updateStudentPassword
   );
 }
