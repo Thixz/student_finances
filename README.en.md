@@ -1,7 +1,7 @@
 
 # 🧠 Student Loan Simulator - API
 
-[🇧🇷 Leia em pt-br](./README.md)
+[![pt-br](https://img.shields.io/badge/lang-pt--br-green.svg)](https://github.com/Thixz/student_finances/blob/master/README.md)
 
 ![Node.js](https://img.shields.io/badge/Node.js-18%2B-brightgreen)
 ![Tests](https://img.shields.io/badge/Tested%20with-Vitest-yellow)

@@ -1,6 +1,6 @@
 # 🧠 Simulador de Financiamento Estudantil - API
 
-[🇧🇷 Leia em inglês](./README.en.md)
+[![en](https://img.shields.io/badge/lang-en-red.svg)](https://github.com/Thixz/student_finances/blob/master/README.en.md)
 
 ![Node.js](https://img.shields.io/badge/Node.js-18%2B-brightgreen)
 ![Tests](https://img.shields.io/badge/Tested%20with-Vitest-yellow)
