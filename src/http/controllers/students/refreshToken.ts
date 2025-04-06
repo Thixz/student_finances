@@ -4,7 +4,7 @@ export async function refreshToken(
   request: FastifyRequest,
   reply: FastifyReply
 ) {
-  await request.jwtVerify({ onlyCookie: true }); // Aqui no momento de autenticação vai checar apenas no cookie o token se está válido
+  await request.jwtVerify({ onlyCookie: true });
 
   const token = await reply.jwtSign(
     {},

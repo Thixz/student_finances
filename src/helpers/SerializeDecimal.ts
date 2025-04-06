@@ -1,6 +1,5 @@
 import { Decimal } from "@prisma/client/runtime/library";
 
-// Converte campos Decimal para number em um objeto
 export function serializeDecimal<T extends object>(data: T): T {
   const result: any = {};
 
@@ -12,7 +11,6 @@ export function serializeDecimal<T extends object>(data: T): T {
   return result;
 }
 
-// Converte uma lista de objetos com campos Decimal para number
 export function serializeDecimalArray<T extends object>(data: T[]): T[] {
   return data.map(serializeDecimal);
 }
