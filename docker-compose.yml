@@ -23,6 +23,8 @@ services:
       - database_financial
     depends_on:
       - database_financial
+    env_file:
+      - .env.docker
 
 volumes:
   pgdata:
