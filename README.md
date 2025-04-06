@@ -76,14 +76,16 @@ npm install
 
 Crie o arquivo `.env` e `.env.docker` com base no `.env.example` na raiz do projeto:
 
-```env example
+`.env`
+```
 DATABASE_URL="postgresql://docker:docker@localhost:5432/apisolid?schema=public"
 NODE_ENV=dev
 PORT=3333
 JWT_SECRET="123pin"
 ```
 
-```env.docker example
+`.env.docker`
+```
 DATABASE_URL="postgresql://docker:docker@database_financial:5432/apisolid?schema=public"
 NODE_ENV=dev
 PORT=3333
