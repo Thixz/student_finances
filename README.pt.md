@@ -1,4 +1,7 @@
 # 🧠 Simulador de Financiamento Estudantil - API
+
+[🇧🇷 Leia em inglês](./README.en.md)
+
 ![Node.js](https://img.shields.io/badge/Node.js-18%2B-brightgreen)
 ![Tests](https://img.shields.io/badge/Tested%20with-Vitest-yellow)
 ![PRs](https://img.shields.io/badge/PRs-welcome-blue)
@@ -94,6 +97,8 @@ O env será utilizado dependendo do local que sua aplicação estará rodando (l
 ```bash
 docker-compose up -d
 ```
+
+Por favor, aguarde que os containers sejam inicializados corretamente.
 
 5. Prepare o database (generate do schema prisma e run das migrations)  *SE A APLICAÇÃO FOR RODAR EM AMBIENTE LOCAL ESTE COMANDO DEVE SER EXECUTADO PRIMEIRO ANTES DE npm run dev* :
 
