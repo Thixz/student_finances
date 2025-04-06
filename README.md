@@ -71,14 +71,23 @@ npm install
 
 3. Configure o `.env`:
 
-Crie o arquivo `.env` com base no `.env.example` na raiz do projeto:
+Crie o arquivo `.env` e `.env.docker` com base no `.env.example` na raiz do projeto:
 
 ```env example
+DATABASE_URL="postgresql://docker:docker@localhost:5432/apisolid?schema=public"
+NODE_ENV=dev
+PORT=3333
+JWT_SECRET="123pin"
+```
+
+```env.docker example
 DATABASE_URL="postgresql://docker:docker@database_financial:5432/apisolid?schema=public"
 NODE_ENV=dev
 PORT=3333
 JWT_SECRET="123pin"
 ```
+
+O env será utilizado dependendo do local que sua aplicação estará rodando (local ou container)
 
 4. Inicie o docker e suba os containers da aplicação e do db postgres:
 
@@ -122,7 +131,7 @@ npm run test:e2e
 
 ```bash
 npm run test:coverage
-./coverage/index.html
+./coverage/index.html    // para abrir o relatório criado em student_finances/coverage/index.html 
 ```
 
 Scripts importantes:
