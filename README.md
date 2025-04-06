@@ -73,7 +73,7 @@ npm install
 
 Crie o arquivo `.env` com base no `.env.example` na raiz do projeto:
 
-```env
+```env example
 DATABASE_URL="postgresql://docker:docker@database_financial:5432/apisolid?schema=public"
 NODE_ENV=dev
 PORT=3333
