@@ -1,8 +1,12 @@
 # 🧠 Simulador de Financiamento Estudantil - API
 ![Node.js](https://img.shields.io/badge/Node.js-18%2B-brightgreen)
-![Tests](https://img.shields.io/badge/tests-passing-success)
+![Tests](https://img.shields.io/badge/Tested%20with-Vitest-yellow)
 ![PRs](https://img.shields.io/badge/PRs-welcome-blue)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-blue)
+![Swagger](https://img.shields.io/badge/Swagger-API%20Docs-green)
+![Fastify](https://img.shields.io/badge/Fastify-Framework-lightgrey)
+![Docker](https://img.shields.io/badge/Docker-Containerized-blue)
+
 
 Esta **API** foi desenvolvida em **Node.js** seguindo os princípios da **Clean Architecture**, promovendo uma separação clara de responsabilidades, facilitando a escalabilidade e manutenção do código.
 
