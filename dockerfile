@@ -10,4 +10,4 @@ COPY . .
 
 EXPOSE 3333
 
-CMD ["npm","run","dockerdev"]
+CMD ["sh", "-c", "npx prisma generate && npm run dockerdev"]

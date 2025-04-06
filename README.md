@@ -86,7 +86,7 @@ JWT_SECRET="123pin"
 docker-compose up -d
 ```
 
-5. Prepare o database (generate do schema prisma e run das migrations):
+5. Prepare o database (generate do schema prisma e run das migrations)  *SE A APLICAÇÃO FOR RODAR EM AMBIENTE LOCAL ESTE COMANDO DEVE SER EXECUTADO PRIMEIRO ANTES DE npm run dev* :
 
 ```bash
 npm run prepare-database
