@@ -6,7 +6,7 @@
 ![Swagger](https://img.shields.io/badge/Swagger-API%20Docs-green)
 ![Fastify](https://img.shields.io/badge/Fastify-Framework-lightgrey)
 ![Docker](https://img.shields.io/badge/Docker-Containerized-blue)
-![GitHub Actions](https://github.com/username/repo/actions/workflows/ci.yml/badge.svg)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Perfil-blue?logo=linkedin)](https://www.linkedin.com/in/thiago-da-costa-albuquerque-9a9997180/)
 
 
 Esta **API** foi desenvolvida em **Node.js** seguindo os princípios da **Clean Architecture**, promovendo uma separação clara de responsabilidades, facilitando a escalabilidade e manutenção do código.
